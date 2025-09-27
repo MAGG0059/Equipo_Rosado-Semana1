@@ -115,20 +115,5 @@ Buscar productos y realizar compras
 
 
 
-## Diagrama de contexto
-
-El diagrama de contexto, representa la relación que hay entre los usuarios (proveedor y cliente), y el sistema para la 
-organización de las ordenes y las facturas. Este es un diagrama simplificado, el cual muestra la interacción principal 
-que tiene el sistema.
-
-- **Elementos usados:**
-  - Cliente
-  - Proveedor
-  - FurniStore
-  - Sistema
-
-![DiagramaContexto.png](image/DiagramaContexto.png)
-
-
 
 
