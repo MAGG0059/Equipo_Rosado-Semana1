@@ -17,7 +17,6 @@ Nuestra solucion tecnologica busca ofreser una api rest estable para la interrac
 informacion de los clientes, productos,pedidos y facturacion, asegurando la calidad de software y su robustez aplicando
 practicas pertinentes para lograrlo.
 
-
 ## Tecnologia utilizadas:
 - java 17
 - spring boot
@@ -71,6 +70,50 @@ Implementación Spring Boot
 ![Junit5.png](image/Junit5.png)
 
 Implementación pruebas Junit5 
+
+## Diagrama de contexto
+
+El diagrama de contexto, representa la relación que hay entre los usuarios (proveedor y cliente), y el sistema para la 
+organización de las ordenes y las facturas. Este es un diagrama simplificado, el cual muestra la interacción principal 
+que tiene el sistema.
+
+- **Elementos usados:**
+  - Cliente
+  - Proveedor
+  - FurniStore
+  - Sistema
+
+![DiagramaContexto.png](image/DiagramaContexto.png)
+
+## Diagrama de Casos de Uso y funcionalidades listadas
+
+- Diagrama de Casos de Uso y funcionalidades listadas:
+
+-![img.png](img.png)
+
+- Funcionalidades:
+
+- CLIENTE
+    - Registrar cuenta
+
+Buscar productos y realizar compras
+
+- VENDEDOR
+    - Gestionar inventario
+    - Procesar ventas
+    - Generar facturas
+
+- ADMINISTRADOR
+    - Gestionar inventario
+    - Ver reportes y estadísticas
+
+- FUNCIONALIDADES
+    - Búsqueda avanzada: Filtrar por categoría (sofás, camas, etc.) y estilo (clásico, moderno, etc.)
+    - Gestión completa de inventario
+    - Proceso de venta integrado con facturación
+    - Sistema de reportes para administración
+
+
 
 ## Diagrama de contexto
 
