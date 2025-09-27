@@ -54,3 +54,23 @@ tipoCommit - descripción del cambio
 - feat: para la incorporación de nuevas funcionalidades.
 - doc: para modificaciones relacionadas con la documentación.
 
+## Dependencias utilizadas para nuestro proyecto
+
+![lombok.png](image/lombok.png)
+
+Implementación de lombok
+
+![swagger.png](image/swagger.png)
+
+Implementación de swagger
+
+![SpringBoot.png](image/SpringBoot.png)
+
+Implementación Spring Boot
+
+![Junit5.png](image/Junit5.png)
+
+Implementación pruebas Junit5
+
+
+
