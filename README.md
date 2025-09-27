@@ -1,15 +1,41 @@
 # Enunciado Primer Reto Equipo Rosado
 ___
 ## **Integrantes**
-* 
+* Tomas Felipe Ramirez Alvares
 * Manuel Alejandro Guarnizo
-* 
-* 
-* 
+* Julian Eduardo Arenas Alfonso
+* Daniel Alejandro Rodriguez
+* David Eduardo Salamanca
 
 ## Descripción del enunciado
 
+* el proyecto FurniStore es una tienda de muebles reconocida que busca digitalizar toda su operacion para mejorar la 
+experiencia de sus clientes y tambien optimizar sus procesos internos.Actualmente, la gestion se realiza mediante hojas de
+calculos y facturas manuales provocando que hallan errores en los inventarios y la facturacion, demorando entregas y teniendo
+faltas de trasabilidad en los pedidos y clientes.
+Nuestra solucion tecnologica busca ofreser una api rest estable para la interracion con las facturas, centralizando la 
+informacion de los clientes, productos,pedidos y facturacion, asegurando la calidad de software y su robustez aplicando
+practicas pertinentes para lograrlo.
 
+
+## Tecnologia utilizadas:
+- java 17
+- spring boot
+- maven
+- mongodb
+- swagger
+- lombok
+- junit5
+- jacoco
+- mockito
+- sonarqube
+
+## Instrucciones de uso:
+
+- clonar el repositorio comando:
+  - "git clone url del repositorio"
+  - "Entrar y usar maven mvn install"
+  - "Ejecuntar la aplicacion con mvn spring-boot:run"
 
 ## Flujo de Ramas
 ___
