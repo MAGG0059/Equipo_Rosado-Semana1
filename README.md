@@ -166,6 +166,59 @@ Buscar productos y realizar compras
 
 ---
 
+## Diagrma de clases
+
+![img.png](img.png)
+
+
+#### **1. Clase principal: FurniStore**
+
+* Representa a la tienda.
+* Contiene un **Inventario** y una lista de **Facturas**.
+
+---
+
+#### **2. Inventario**
+
+* Administra los muebles disponibles en la tienda junto con sus cantidades.
+* Usa un `Map<Furniture, int>` para asociar cada mueble con su stock disponible.
+
+---
+
+#### **3. Bill y BillItem**
+
+* Bill es un registro generado en cada venta.
+* Contiene un identificador, fecha, cliente y una colección de **BillItems**.
+* **BillItem**: representa cada línea de la factura.
+
+---
+
+#### **4. Cliente**
+
+* Representa al comprador.
+* Tiene atributos básicos: `idClient`, `name`, `address`.
+* Está asociado directamente a la clase **Factura**, porque toda venta debe estar ligada a un cliente.
+
+---
+
+#### **5. Muebles**
+
+* Clase abstracta **Mueble**:
+
+  * Define los atributos comunes: `id`, `name`, `price` y el `style`.
+* Subclases concretas:
+
+  * **Couch, Bed, Chair, SofaBed**.
+---
+
+#### **6. Estilo**
+
+* Implementado como un **enum**, donde cada mueble tiene exactamente un estilo asociado.
+* Define categorías visuales de los muebles: `CLASSIC`, `MODERN`, `RUSTIC`.
+
+
+---
+
 
 
 
