@@ -89,7 +89,7 @@ que tiene el sistema.
 
 - Diagrama de Casos de Uso y funcionalidades listadas:
 
--![img.png](img.png)
+-![img.png](image/DiagramaCasosDeUso.png)
 
 - Funcionalidades:
 
@@ -112,6 +112,59 @@ Buscar productos y realizar compras
     - Gestión completa de inventario
     - Proceso de venta integrado con facturación
     - Sistema de reportes para administración
+
+## Diagrama de Clases Preliminar
+
+![img.png](image/diagrama_clases.png)
+
+
+#### **1. Clase principal: FurniStore**
+
+* Representa a la tienda.
+* Contiene un **Inventory** y una lista de **Bills**.
+
+---
+
+#### **2. Inventory**
+
+* Administra los muebles disponibles en la tienda junto con sus cantidades.
+* Usa un `Map<Furniture, int>` para asociar cada mueble con su stock disponible.
+
+---
+
+#### **3. Bill y BillItem**
+
+* Bill es un registro generado en cada venta.
+* Contiene un identificador, fecha, cliente y una colección de **BillItems**.
+* **BillItem**: representa cada línea de la factura.
+
+---
+
+#### **4. Client**
+
+* Representa al comprador.
+* Tiene atributos básicos: `idClient`, `name`, `address`.
+* Está asociado directamente a la clase **Factura**, porque toda venta debe estar ligada a un cliente.
+
+---
+
+#### **5. Furniture**
+
+* Clase abstracta **Furniture**:
+
+  * Define los atributos comunes: `id`, `name`, `price` y el `style`.
+* Subclases concretas:
+
+  * **Couch, Bed, Chair, SofaBed**.
+---
+
+#### **6. Style**
+
+* Implementado como un **enum**, donde cada mueble tiene exactamente un estilo asociado.
+* Define categorías visuales de los muebles: `CLASSIC`, `MODERN`, `RUSTIC`.
+
+
+---
 
 
 
