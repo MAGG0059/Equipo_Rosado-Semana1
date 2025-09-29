@@ -5,7 +5,7 @@ ___
 * Manuel Alejandro Guarnizo
 * Julian Eduardo Arenas Alfonso
 * Daniel Alejandro Rodriguez
-* David Eduardo Salamanca
+* David Eduardo Salamanca Aguilar 
 
 ## Descripción del enunciado
 
@@ -163,6 +163,39 @@ Buscar productos y realizar compras
 * Implementado como un **enum**, donde cada mueble tiene exactamente un estilo asociado.
 * Define categorías visuales de los muebles: `CLASSIC`, `MODERN`, `RUSTIC`.
  ---
-
-
-
+## Patrones de Diseño
+1. **Strategy Pattern**
+    - Justificación: El diagrama de clases muestra que los muebles poseen diferentes estilos (CLASSIC, MODERN, RUSTIC) mediante el enum Style. Cada estilo podría requerir diferentes estrategias de cálculo de precio, políticas de descuento o métodos de visualización. El patrón Strategy permite encapsular estos comportamientos variables en clases separadas, facilitando la adición de nuevos estilos sin modificar las clases de muebles existentes.
+    - Contexto en diagramas: La relación entre Furniture y Style en el diagrama de clases sugiere la necesidad de comportamientos diferenciados por estilo, ideal para Strategy.
+2. **Factory Method Pattern**
+    - Justificación: La estructura jerárquica con clase abstracta Furniture y subclases concretas (Couch, Bed, Chair, SofaBed) evidenciada en el diagrama de clases requiere un mecanismo centralizado de creación. Factory Method abstrae el proceso de instanciación, permitiendo que el sistema crece con nuevos tipos de muebles manteniendo el principio de open/closed.
+    - Contexto en diagramas: La especialización de muebles en el diagrama de clases demanda un patrón de creación que maneje esta complejidad.
+3. **Repository Pattern**
+    - Justificación: El uso de MongoDB como base de datos y la necesidad de operaciones CRUD sobre entidades como Client, Furniture y Bills requiere una abstracción del acceso a datos. Repository Pattern separa la lógica de negocio de la persistencia, facilitando testing y mantenimiento.
+    - Contexto en diagramas: Las entidades identificadas en el diagrama de clases (Client, Furniture, Bills) necesitan operaciones de persistencia consistentes.
+4. **Observer Pattern**
+    - Justificación: El diagrama de contexto muestra flujos entre Cliente, Proveedor y Sistema donde cambios en el inventario deben notificarse a múltiples interesados. Observer permite que objetos se suscriban a eventos específicos, como actualizaciones de stock, manteniendo bajo acoplamiento.
+    - Contexto en diagramas: Las interacciones en el diagrama de contexto sugieren notificaciones automáticas entre componentes.
+## Principios SOLID
+1. **S - Single Responsibility Principle**
+    - Cada clase en el diagrama tiene una responsabilidad bien definida:
+    - Inventory: Gestión exclusiva del inventario
+    - Bills: Manejo de facturación
+    - Client: Administración de datos del cliente
+    - Furniture: Representación de muebles sin lógica de negocio externa
+2. **O - Open/Closed Principle**
+    - La jerarquía de Furniture está cerrada para modificación pero abierta para extensión. Nuevos tipos de muebles se integran mediante herencia sin alterar el código base. El enum Style permite agregar estilos sin afectar clases existentes.
+3. **L - Liskov Substitution Principle**
+    - Todas las subclases de Furniture (Couch, Bed, Chair, SofaBed) son sustituibles por su clase base. Cada subclase mantiene el contrato behavioral definido por Furniture, garantizando consistencia en las operaciones del sistema.
+4. **I - Interface Segregation Principle**
+    - Las responsabilidades están segregadas en interfaces específicas rather than una interfaz general. Operaciones de inventario, facturación y gestión de clientes mantienen interfaces enfocadas, evitando que las clases implementen métodos irrelevantes.
+5. **D - Dependency Inversion Principle**
+    - Los módulos de alto nivel como FurniStore dependen de abstracciones (Furniture, Inventory) no de implementaciones concretas. La inyección de dependencias con Spring Boot facilita este principio, permitiendo cambiar implementaciones sin afectar consumidores.
+## Beneficios de aplicar SOLID y Patrones de Diseño
+1. **Mantenibilidad**: La aplicación de SOLID y patrones de diseño facilita la comprensión y modificación del código. Cada clase tiene una responsabilidad clara, lo que reduce la complejidad al realizar cambios.
+2. **Escalabilidad**: La estructura modular permite agregar nuevas funcionalidades (nuevos tipos de muebles, estilos, métodos de facturación) sin afectar el sistema existente, cumpliendo con el principio Open/Closed.
+3. **Reusabilidad**: Las clases y patrones implementados pueden reutilizarse en otros proyectos o módulos, reduciendo la duplicación de código y mejorando la eficiencia del desarrollo.
+4. **Testabilidad**: La separación de responsabilidades y la inversión de dependencias facilitan la creación de pruebas unitarias, mejorando la calidad del software y reduciendo errores.
+5. **Flexibilidad**: Los patrones como Strategy y Factory Method permiten cambiar comportamientos y crear objetos de manera dinámica, adaptándose a nuevos requisitos sin grandes refactorizaciones.
+6. **Colaboración en equipo**: La claridad en la estructura del código y la definición de responsabilidades facilita el trabajo en equipo, permitiendo que varios desarrolladores trabajen en diferentes partes del sistema sin conflictos.
+7. **Reducción de errores**: La implementación de patrones y principios sólidos reduce la probabilidad de introducir errores al modificar el código, ya que cada cambio está confinado a áreas específicas del sistema.
