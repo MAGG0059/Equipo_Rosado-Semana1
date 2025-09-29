@@ -87,9 +87,9 @@ que tiene el sistema.
 
 ## Diagrama de Casos de Uso y funcionalidades listadas
 
-- Diagrama de Casos de Uso y funcionalidades listadas:
-
 ![img.png](image/diagramaCasosDeUso.png)
+
+- Diagrama de Casos de Uso y funcionalidades listadas:
 
 - Funcionalidades:
 
