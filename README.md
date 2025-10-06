@@ -87,7 +87,7 @@ que tiene el sistema.
 
 ## Diagrama de Casos de Uso y funcionalidades listadas
 
-![img.png](image/img.png)
+![diagramaCasosDeUso.png](image/diagramaCasosDeUso.png)
 
 - Diagrama de Casos de Uso y funcionalidades listadas:
 
@@ -115,7 +115,7 @@ Buscar productos y realizar compras
 
 ## Diagrama de Clases Preliminar
 
-![diagramaClasesActualizado1.png](image/diagramaClasesActualizado1.png)
+![diagrama_clases.png](image/diagrama_clases.png)
 
 #### **1. Clase principal: FurniStore**
 
@@ -256,35 +256,6 @@ Incorpora flexibilidad comercial mediante el patrón **Decorator**, permitiendo 
 
 ---
 
-#### **7. BillComponent**
-
-* Esta clase define el componente base que toda factura debe tener.
-* Esta clase permite que toda factura (simple, decoradora) usen la misma interfaz
- ---
-
-#### **8. BillDecorator**
-
-* Esta clase implementa la interfaz de BillComponent.
-* Esta clase no modifica la factura original, solo la "decora", poniendo más valores.
- ---
-
-#### **9. IVADecorator**
-
-* Esta clase hereda de BillDecorator
-* Esta clase aplica un impuesto de IVA, en este caso del 19% en el total de la factura
- ---
-
-#### **10.DiscountDecorator**
-
-* Esta clase hereda de BillDecorator.
-* Esta clase aplica un descuento porcentual al total de la factura.
- ---
-
-#### **11.ShippingDecorator**
-
-* Esta clase hereda de BillDecorator.
-* Añade un costo fijo de envio en el total de la factura.
- ---
 ### **US-04 – Agregar costos de envío**
 
 **Historia de usuario:**  
@@ -332,20 +303,65 @@ Como **cliente**, quiero **descargar mi factura en formato PDF**, para **tener u
 Brinda soporte digital al cliente y facilita la trazabilidad de las operaciones, cumpliendo buenas prácticas de experiencia de usuario.
 
 ---
+Actualizacion diagramas casos de uso
+
+![diagramaCasosDeUsoActualizado1.png](image/diagramaCasosDeUsoActualizado1.png)
+
+Realizar Compra
+Factura base con las siguientes condiciones solicitadas:
+- Calcular total final
+- Agregar costo de envió si es necesario
+- Calcular IVA para los productos
+- Aplicar descuentos si son acertados.
+
+Actualizacion de diagrama de clases
+
+![diagramaClasesActualizado1.png](image/diagramaClasesActualizado1.png)
+
+#### **7. BillComponent**
+
+* Esta clase define el componente base que toda factura debe tener.
+* Esta clase permite que toda factura (simple, decoradora) usen la misma interfaz
+ ---
+
+#### **8. BillDecorator**
+
+* Esta clase implementa la interfaz de BillComponent.
+* Esta clase no modifica la factura original, solo la "decora", poniendo más valores.
+ ---
+
+#### **9. IVADecorator**
+
+* Esta clase hereda de BillDecorator
+* Esta clase aplica un impuesto de IVA, en este caso del 19% en el total de la factura
+ ---
+
+#### **10.DiscountDecorator**
+
+* Esta clase hereda de BillDecorator.
+* Esta clase aplica un descuento porcentual al total de la factura.
+ ---
+
+#### **11.ShippingDecorator**
+
+* Esta clase hereda de BillDecorator.
+* Añade un costo fijo de envio en el total de la factura.
+ ---
 
 #### **Resumen general del Backlog**
 
-| Código | Funcionalidad | Actor principal | Prioridad |
-|---------|----------------|----------------|-----------|
-| US-01 | Generar factura con detalle e IVA | Cliente | Alta      |
-| US-02 | Registrar facturas de venta | Vendedor | Alta      |
-| US-03 | Aplicar descuentos promocionales | Cliente | Media     |
-| US-04 | Agregar costos de envío | Cliente | Media     |
-| US-05 | Consultar facturas generadas | Administrador | Alta      |
-| US-06 | Descargar factura en PDF | Cliente | Baja      |}
+| Código | Funcionalidad | Actor principal | Prioridad  |
+|---------|----------------|----------------|------------|
+| US-01 | Generar factura con detalle e IVA | Cliente | Alta       |
+| US-02 | Registrar facturas de venta | Vendedor | Media      |
+| US-03 | Aplicar descuentos promocionales | Cliente | Baja-Media |
+| US-04 | Agregar costos de envío | Cliente | Media      |
+| US-05 | Consultar facturas generadas | Administrador | Media      |
+| US-06 | Descargar factura en PDF | Cliente | Baja       |}
 
 ---
 
 **Conclusión:**  
 El backlog prioriza las funcionalidades esenciales para el módulo de facturación, aplicando el **patrón Decorator** para extender el cálculo de totales (IVA, descuentos, envío) sin modificar la lógica principal.  
 Cada historia está alineada con los objetivos del proyecto: mejorar la trazabilidad, reducir errores y ofrecer una experiencia de usuario profesional.
+![BacklogS2.png](image%2FBacklogS2.png)
