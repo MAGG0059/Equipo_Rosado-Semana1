@@ -199,3 +199,125 @@ Buscar productos y realizar compras
 5. **Flexibilidad**: Los patrones como Strategy y Factory Method permiten cambiar comportamientos y crear objetos de manera dinámica, adaptándose a nuevos requisitos sin grandes refactorizaciones.
 6. **Colaboración en equipo**: La claridad en la estructura del código y la definición de responsabilidades facilita el trabajo en equipo, permitiendo que varios desarrolladores trabajen en diferentes partes del sistema sin conflictos.
 7. **Reducción de errores**: La implementación de patrones y principios sólidos reduce la probabilidad de introducir errores al modificar el código, ya que cada cambio está confinado a áreas específicas del sistema.
+
+---
+
+# Enunciado Segundo Reto Equipo Rosado
+## 3. Backlog de Producto – Módulo de Facturación (FurniStore)
+El siguiente backlog corresponde a las funcionalidades planificadas para el desarrollo del **módulo de facturación** de *FurniStore*.  
+Cada historia de usuario se redacta desde la perspectiva del usuario final y define criterios de aceptación medibles que aseguran el cumplimiento de la funcionalidad.
+
+---
+
+### **US-01 – Generar factura con detalle e IVA**
+
+**Historia de usuario:**  
+Como **cliente**, quiero **recibir una factura con el detalle de mis compras y el total con IVA**, para **tener claridad sobre el costo final de mi pedido**.
+
+**Criterios de aceptación:**
+- La factura debe incluir los datos del cliente (nombre, documento, dirección).
+- Debe mostrar los productos adquiridos con su cantidad, precio unitario y subtotal.
+- El IVA debe calcularse automáticamente al generar la factura.
+- El total debe reflejar la suma de los subtotales más el IVA.
+
+**Justificación:**  
+Permite digitalizar la facturación y garantizar la transparencia en el cobro, reduciendo errores manuales.
+
+---
+
+### **US-02 – Registrar facturas de venta**
+
+**Historia de usuario:**  
+Como **vendedor**, quiero **registrar una factura para cada compra realizada**, para **mantener el control de las transacciones diarias**.
+
+**Criterios de aceptación:**
+- El sistema debe permitir crear una nueva factura desde el módulo de ventas.
+- Cada factura debe tener un número único autogenerado.
+- Los productos deben seleccionarse del inventario disponible.
+- La fecha y hora de emisión deben registrarse automáticamente.
+
+**Justificación:**  
+Facilita la trazabilidad de las ventas y la integración con el módulo de inventario.
+
+---
+
+### **US-03 – Aplicar descuentos promocionales**
+
+**Historia de usuario:**  
+Como **cliente**, quiero **que se apliquen descuentos cuando haya promociones activas**, para **ahorrar en mis compras**.
+
+**Criterios de aceptación:**
+- El sistema debe permitir aplicar un porcentaje de descuento sobre el total de la factura.
+- El valor del descuento debe visualizarse claramente en el detalle.
+- El total debe recalcularse automáticamente al aplicar el descuento.
+- No deben aplicarse descuentos acumulativos sin autorización del administrador.
+
+**Justificación:**  
+Incorpora flexibilidad comercial mediante el patrón **Decorator**, permitiendo añadir descuentos sin alterar la estructura base de la factura.
+
+---
+
+### **US-04 – Agregar costos de envío**
+
+**Historia de usuario:**  
+Como **cliente**, quiero **ver reflejados los costos de envío en mi factura**, para **conocer el valor total que debo pagar**.
+
+**Criterios de aceptación:**
+- El costo de envío debe agregarse como un ítem adicional en la factura.
+- El valor del envío depende de la ubicación o tipo de entrega.
+- El total final debe incluir envío, descuentos e IVA.
+- El costo de envío debe poder añadirse o eliminarse dinámicamente mediante el decorador.
+
+**Justificación:**  
+Se aplica el patrón **Decorator** para extender el cálculo de totales, añadiendo el costo de envío sin modificar la clase principal.
+
+---
+
+### **US-05 – Consultar facturas generadas**
+
+**Historia de usuario:**  
+Como **administrador**, quiero **consultar todas las facturas generadas**, para **mantener trazabilidad de las ventas y generar reportes contables**.
+
+**Criterios de aceptación:**
+- El sistema debe listar todas las facturas con número, cliente, fecha y total.
+- Debe permitir filtrar por rango de fechas o cliente.
+- Debe poder exportarse la información a formatos PDF o Excel.
+- La consulta debe reflejar datos actualizados del sistema.
+
+**Justificación:**  
+Garantiza la trazabilidad y el control contable, facilitando auditorías y reportes administrativos.
+
+---
+
+### **US-06 – Descargar factura en formato PDF**
+
+**Historia de usuario:**  
+Como **cliente**, quiero **descargar mi factura en formato PDF**, para **tener un comprobante digital de mi compra**.
+
+**Criterios de aceptación:**
+- Debe existir un botón o acción visible para descargar la factura.
+- El archivo PDF debe contener toda la información relevante (cliente, productos, IVA, descuentos, envío, total).
+- El nombre del archivo debe seguir el formato `Factura_[número].pdf`.
+- El PDF debe generarse automáticamente tras el registro de la venta.
+
+**Justificación:**  
+Brinda soporte digital al cliente y facilita la trazabilidad de las operaciones, cumpliendo buenas prácticas de experiencia de usuario.
+
+---
+
+#### **Resumen general del Backlog**
+
+| Código | Funcionalidad | Actor principal | Prioridad |
+|---------|----------------|----------------|-----------|
+| US-01 | Generar factura con detalle e IVA | Cliente | Alta      |
+| US-02 | Registrar facturas de venta | Vendedor | Alta      |
+| US-03 | Aplicar descuentos promocionales | Cliente | Media     |
+| US-04 | Agregar costos de envío | Cliente | Media     |
+| US-05 | Consultar facturas generadas | Administrador | Alta      |
+| US-06 | Descargar factura en PDF | Cliente | Baja      |}
+
+---
+
+**Conclusión:**  
+El backlog prioriza las funcionalidades esenciales para el módulo de facturación, aplicando el **patrón Decorator** para extender el cálculo de totales (IVA, descuentos, envío) sin modificar la lógica principal.  
+Cada historia está alineada con los objetivos del proyecto: mejorar la trazabilidad, reducir errores y ofrecer una experiencia de usuario profesional.
