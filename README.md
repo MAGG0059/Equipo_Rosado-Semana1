@@ -335,17 +335,18 @@ Brinda soporte digital al cliente y facilita la trazabilidad de las operaciones,
 
 #### **Resumen general del Backlog**
 
-| Código | Funcionalidad | Actor principal | Prioridad |
-|---------|----------------|----------------|-----------|
-| US-01 | Generar factura con detalle e IVA | Cliente | Alta      |
-| US-02 | Registrar facturas de venta | Vendedor | Alta      |
-| US-03 | Aplicar descuentos promocionales | Cliente | Media     |
-| US-04 | Agregar costos de envío | Cliente | Media     |
-| US-05 | Consultar facturas generadas | Administrador | Alta      |
-| US-06 | Descargar factura en PDF | Cliente | Baja      |}
+| Código | Funcionalidad | Actor principal | Prioridad  |
+|---------|----------------|----------------|------------|
+| US-01 | Generar factura con detalle e IVA | Cliente | Alta       |
+| US-02 | Registrar facturas de venta | Vendedor | Media      |
+| US-03 | Aplicar descuentos promocionales | Cliente | Baja-Media |
+| US-04 | Agregar costos de envío | Cliente | Media      |
+| US-05 | Consultar facturas generadas | Administrador | Media      |
+| US-06 | Descargar factura en PDF | Cliente | Baja       |}
 
 ---
 
 **Conclusión:**  
 El backlog prioriza las funcionalidades esenciales para el módulo de facturación, aplicando el **patrón Decorator** para extender el cálculo de totales (IVA, descuentos, envío) sin modificar la lógica principal.  
 Cada historia está alineada con los objetivos del proyecto: mejorar la trazabilidad, reducir errores y ofrecer una experiencia de usuario profesional.
+![BacklogS2.png](image%2FBacklogS2.png)
