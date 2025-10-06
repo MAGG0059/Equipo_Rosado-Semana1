@@ -1,0 +1,12 @@
+edu\dosw\model\BillDecorator.class
+edu\dosw\Application.class
+edu\dosw\model\DiscountDecorator.class
+edu\dosw\model\Bill.class
+edu\dosw\model\EnvioDecorator.class
+edu\dosw\model\FurniStore.class
+edu\dosw\model\Furniture.class
+edu\dosw\model\BillComponent.class
+edu\dosw\model\Client.class
+edu\dosw\model\Inventory.class
+edu\dosw\model\IVADecorator.class
+edu\dosw\model\Style.class
