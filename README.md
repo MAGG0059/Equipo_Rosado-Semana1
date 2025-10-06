@@ -362,6 +362,24 @@ Actualizacion de diagrama de clases
 ---
 
 **Conclusión:**  
-El backlog prioriza las funcionalidades esenciales para el módulo de facturación, aplicando el **patrón Decorator** para extender el cálculo de totales (IVA, descuentos, envío) sin modificar la lógica principal.  
+El backlog prioriza las funcionalidades esenciales para el módulo de facturación, aplicando el **patrón Decorator** para extender el cálculo de totales (IVA, descuentos, envío) sin modificar la lógica principal.
+
 Cada historia está alineada con los objetivos del proyecto: mejorar la trazabilidad, reducir errores y ofrecer una experiencia de usuario profesional.
+
+---
+### Planeación del sprint:
+
+| Rama                        | Asociación Tarea                                    | Descripción Técnica                                             | Responsable                       | Estimación |
+|-----------------------------|-----------------------------------------------------|-----------------------------------------------------------------|-----------------------------------|------------|
+| **feature/Diagramas**       | Diagramación del sistema                            | Elaboración de diagramas UML (clases, secuencia y componentes). | Julian Arenas                     | 1 día      |
+| **feature/implementacion1** | US-01, US-02                                        | Implementar generación y registro de facturas con IVA.          | Manuel Gurnizo                    | 2 días     |
+| **feature/discounts**       | US-03                                               | Aplicar descuentos promocionales usando el patrón Decorator.    | Manuel Gurnizo                    | 1 día      |
+| **feature/deliveries**      | US-04                                               | Agregar costos de envío como extensión del cálculo total.       | Manuel Gurnizo                    | 1 día      |
+| **feature/bills**           | US-05                                               | Permitir la consulta y filtrado de facturas generadas.          | Manuel Gurnizo                    | 2 días     |
+| **feature/downloadPDF**     | US-06                                               | Implementar la descarga de facturas en formato PDF.             | Manuel Gurnizo                    | 1 día      |
+| **feature/Test**            | Creación y prueba de test                           | Realizar testing de las funcionalidades agregadas     .         | Tomas Ramirez                     | 1 día      |
+| **feature/documentation**   | Adiciones y modificaciones respecto a Documentación | Realizar documentación de la estructuración realizada.          | David Salamanca, Daniel Rodriguez | 1 día      |
+
+---
+
 ![BacklogS2.png](image%2FBacklogS2.png)
