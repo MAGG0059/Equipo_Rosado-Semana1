@@ -1,2 +1,2 @@
-# Equipo_Rosado-Semana1
-Repositorio Solución primer enunciado
+# Equipo_Rosado
+Repositorio Solución
