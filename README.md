@@ -374,7 +374,7 @@ Cada historia está alineada con los objetivos del proyecto: mejorar la trazabil
 
 ---
 
-## Planeación del sprint
+## 4. Planeación del sprint
 
 | Rama                        | Asociación Tarea                                    | Descripción Técnica                                             | Responsable                       | Estimación |
 |-----------------------------|-----------------------------------------------------|-----------------------------------------------------------------|-----------------------------------|------------|
