@@ -1,4 +1,4 @@
-# Enunciado Primer Reto Equipo Rosado
+# Equipo Rosado
 ___
 ## **Integrantes**
 * Tomas Felipe Ramirez Alvares
