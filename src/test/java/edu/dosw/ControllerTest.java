@@ -25,7 +25,6 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class ControllerTest {
 
-    // Client controller + mocks
     @Mock
     private ClientService clientService;
     @InjectMocks
