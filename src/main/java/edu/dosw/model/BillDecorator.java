@@ -1,7 +1,7 @@
 package edu.dosw.model;
 
 public abstract class BillDecorator implements BillComponent {
-    protected BillComponent wrappedBill;
+    public BillComponent wrappedBill;
 
     public BillDecorator(BillComponent wrappedBill) {
         this.wrappedBill = wrappedBill;

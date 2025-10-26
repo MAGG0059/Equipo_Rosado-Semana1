@@ -13,4 +13,8 @@ public class EnvioDecorator extends BillDecorator {
     public double getTotal() {
         return super.getTotal() + costoEnvio;
     }
+
+    public double getCostoEnvio() {
+        return costoEnvio;
+    }
 }
