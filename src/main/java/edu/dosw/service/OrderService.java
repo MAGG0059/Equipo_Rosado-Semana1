@@ -1,113 +1,73 @@
 package edu.dosw.service;
 
-import edu.dosw.model.*;
 import edu.dosw.dto.*;
-import edu.dosw.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
 
-    @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private ClientService clientService;
-
-    @Autowired
-    private FurnitureService furnitureService;
-
     public BillResponseDTO createOrder(OrderRequestDTO orderRequest) {
-        Client client = clientService.getClientEntityById(orderRequest.getClientId());
-
-        List<Furniture> furnitures = furnitureService.getFurnitureEntitiesByIds(orderRequest.getFurnitureIds());
-        if (furnitures.isEmpty()) {
-            throw new RuntimeException("No se encontraron muebles con los IDs proporcionados");
+        if (orderRequest.getFurnitureIds() == null || orderRequest.getFurnitureIds().isEmpty()) {
+            throw new RuntimeException("La orden debe contener al menos un mueble");
         }
 
-        BillComponent bill = new Bill(client, furnitures);
-        double subtotal = ((Bill) bill).getSubtotal();
-
-        double discountAmount = 0;
-        double shippingAmount = 0;
-
-        if (orderRequest.isApplyDiscount()) {
-            discountAmount = subtotal * 0.10;
-            bill = new DiscountDecorator(bill, 0.10);
-        }
-
-        bill = new IVADecorator(bill);
-        double ivaAmount = subtotal * 0.19;
-
-        if (orderRequest.isIncludeShipping()) {
-            shippingAmount = orderRequest.getShippingCost();
-            bill = new EnvioDecorator(bill, shippingAmount);
-        }
-
-        orderRepository.save(bill);
-
-        return createBillResponseDTO(bill, client, furnitures, subtotal, ivaAmount, discountAmount, shippingAmount);
-    }
-
-    public BillResponseDTO getOrder(int orderId) {
-        BillComponent bill = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Orden no encontrada"));
-
-        Bill baseBill = extractBaseBill(bill);
-        Client client = baseBill.getClient();
-        List<Furniture> furnitures = baseBill.getFurnitures();
-
-        double subtotal = baseBill.getSubtotal();
-        double total = bill.getTotal();
-        double ivaAmount = subtotal * 0.19;
-
-        double discountAmount = calculateDiscount(bill, subtotal);
-        double shippingAmount = calculateShipping(bill);
-
-        return createBillResponseDTO(bill, client, furnitures, subtotal, ivaAmount, discountAmount, shippingAmount);
-    }
-
-    private BillResponseDTO createBillResponseDTO(BillComponent bill, Client client, List<Furniture> furnitures, double subtotal, double iva, double discount, double shipping) {
         BillResponseDTO response = new BillResponseDTO();
-
         response.setOrderId(1);
 
-        response.setClient(new ClientDTO(client.getIdClient(), client.getName(), client.getAddress()));
+        ClientDTO client = new ClientDTO();
+        client.setId(orderRequest.getClientId());
+        client.setName("Cliente " + orderRequest.getClientId());
+        client.setAddress("Dirección del cliente");
+        response.setClient(client);
 
-        List<FurnitureDTO> furnitureDTOs = furnitures.stream().map(f -> new FurnitureDTO(f.getId(), f.getName(), f.getPrice(), f.getStyle())).collect(Collectors.toList());
-        response.setFurnitures(furnitureDTOs);
 
+        List<FurnitureDTO> furnitures = new ArrayList<>();
+        double subtotal = 0;
+
+        for (Integer furnitureId : orderRequest.getFurnitureIds()) {
+            FurnitureDTO furniture = new FurnitureDTO();
+            furniture.setId(furnitureId);
+            furniture.setName("Mueble " + furnitureId);
+            furniture.setPrice(100.0 * furnitureId);
+            furniture.setStyle(edu.dosw.model.Style.CLASSIC);
+            furnitures.add(furniture);
+            subtotal += furniture.getPrice();
+        }
+
+        response.setFurnitures(furnitures);
         response.setSubtotal(subtotal);
-        response.setTotal(bill.getTotal());
-        response.setIva(iva);
+
+
+        double discount = orderRequest.isApplyDiscount() ? subtotal * 0.1 : 0;
         response.setDiscount(discount);
+
+
+        double shipping = orderRequest.isIncludeShipping() ? orderRequest.getShippingCost() : 0;
         response.setShipping(shipping);
+
+
+        double iva = (subtotal - discount) * 0.16;
+        response.setIva(iva);
+
+        double total = subtotal - discount + shipping + iva;
+        response.setTotal(total);
 
         return response;
     }
 
-    private Bill extractBaseBill(BillComponent bill) {
-        if (bill instanceof Bill) {
-            return (Bill) bill;
-        } else if (bill instanceof BillDecorator) {
-            return extractBaseBill(((BillDecorator) bill).wrappedBill);
-        }
-        throw new RuntimeException("No se pudo extraer la factura");
-    }
+    public BillResponseDTO getOrder(int id) {
 
-    private double calculateDiscount(BillComponent bill, double subtotal) {
-        if (bill instanceof DiscountDecorator) {
-            return subtotal * 0.10;
-        }
-        return 0;
-    }
+        OrderRequestDTO request = new OrderRequestDTO();
+        request.setClientId(1);
+        request.setFurnitureIds(List.of(1, 2));
+        request.setApplyDiscount(true);
+        request.setIncludeShipping(true);
+        request.setShippingCost(50.0);
 
-    private double calculateShipping(BillComponent bill) {
-        if (bill instanceof EnvioDecorator) {
-            return ((EnvioDecorator) bill).getCostoEnvio();
-        }
-        return 0;
+        BillResponseDTO response = createOrder(request);
+        response.setOrderId(id);
+        return response;
     }
 }

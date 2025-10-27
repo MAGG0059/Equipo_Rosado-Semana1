@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FurniStore" />
+        <module name="Equipo_Rosado" />
         <module name="DOSW2_TallerEvaluativo_Exodo" />
       </profile>
     </annotationProcessing>
@@ -14,6 +15,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="DOSW2_TallerEvaluativo_Exodo" options="-parameters" />
+      <module name="Equipo_Rosado" options="-parameters" />
       <module name="FurniStore" options="-parameters" />
     </option>
   </component>

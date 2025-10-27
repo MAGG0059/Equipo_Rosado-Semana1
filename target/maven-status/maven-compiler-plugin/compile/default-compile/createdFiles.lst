@@ -11,11 +11,11 @@ edu\dosw\dto\FurnitureDTO.class
 edu\dosw\model\Bill.class
 edu\dosw\model\EnvioDecorator.class
 edu\dosw\model\IVADecorator.class
-edu\dosw\service\FurnitureService$1.class
 edu\dosw\repository\FurnitureRepository$3.class
 edu\dosw\model\BillDecorator.class
 edu\dosw\dto\ClientDTO.class
 edu\dosw\service\FurnitureService.class
+edu\dosw\service\Style.class
 edu\dosw\repository\FurnitureRepository$2.class
 edu\dosw\repository\OrderRepository.class
 edu\dosw\repository\FurnitureRepository.class

@@ -15,9 +15,9 @@ public class ClientController {
     private ClientService clientService;
 
     @PostMapping
-    public ResponseEntity<ClientDTO> registerClient(@RequestBody ClientDTO clientDTO) {
+    public ResponseEntity<ClientDTO> registerClient(@RequestParam int id,@RequestBody ClientDTO clientDTO) {
         try {
-            ClientDTO registeredClient = clientService.registerClient(clientDTO);
+            ClientDTO registeredClient = clientService.registerClient(id,clientDTO);
             return ResponseEntity.ok(registeredClient);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();

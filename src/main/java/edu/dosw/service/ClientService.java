@@ -1,11 +1,13 @@
 package edu.dosw.service;
 
-import edu.dosw.model.Client;
 import edu.dosw.dto.ClientDTO;
+import edu.dosw.model.Client;
 import edu.dosw.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -14,34 +16,50 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public ClientDTO registerClient(ClientDTO clientDTO) {
-        Client client = new Client(0, clientDTO.getName(), clientDTO.getAddress());
+    public ClientDTO registerClient(int id, ClientDTO clientDTO) {
+        Optional<Client> existingClient = clientRepository.findById(id);
+        if (existingClient.isPresent()) {
+            throw new RuntimeException("Cliente con ID " + id + " ya existe");
+        }
+
+        Client client = new Client(id, clientDTO.getName(), clientDTO.getAddress());
+        client.setEmail(clientDTO.getEmail());
+        client.setPhone(clientDTO.getPhone());
+
         Client savedClient = clientRepository.save(client);
         return convertToDTO(savedClient);
     }
 
-    public Client getClientEntityById(int id) {
-        return clientRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontro al cliente"));
+    public List<ClientDTO> getAllClients() {
+        List<Client> clients = clientRepository.findAll();
+        return clients.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     public ClientDTO getClientById(int id) {
-        Client client = getClientEntityById(id);
-        return convertToDTO(client);
-    }
-
-    public List<ClientDTO> getAllClients() {
-        return clientRepository.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
-    }
-
-    public void deleteClient(int id) {
-        clientRepository.deleteById(id);
+        Optional<Client> client = clientRepository.findById(id);
+        if (client.isEmpty()) {
+            throw new RuntimeException("Cliente no encontrado con ID: " + id);
+        }
+        return convertToDTO(client.get());
     }
 
     private ClientDTO convertToDTO(Client client) {
-        return new ClientDTO(
-                client.getIdClient(),
-                client.getName(),
-                client.getAddress()
-        );
+        ClientDTO dto = new ClientDTO();
+        dto.setId(client.getIdClient());
+        dto.setName(client.getName());
+        dto.setAddress(client.getAddress());
+        dto.setEmail(client.getEmail());
+        dto.setPhone(client.getPhone());
+        return dto;
+    }
+
+    public Client getClientEntityById(int id) {
+        Optional<Client> client = clientRepository.findById(id);
+        if (client.isEmpty()) {
+            throw new RuntimeException("Cliente no encontrado con ID: " + id);
+        }
+        return client.get();
     }
 }

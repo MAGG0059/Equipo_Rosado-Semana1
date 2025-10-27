@@ -1,4 +1,5 @@
-package src.test.java.edu.dosw;
+package edu.dosw;
+
 import edu.dosw.controller.ClientController;
 import edu.dosw.controller.FurnitureController;
 import edu.dosw.controller.OrderController;
@@ -20,6 +21,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,36 +30,49 @@ public class ControllerTest {
 
     @Mock
     private ClientService clientService;
+
     @InjectMocks
     private ClientController clientController;
+
     @Mock
     private ClientDTO clientDTO;
 
     @Mock
     private FurnitureService furnitureService;
+
     @InjectMocks
     private FurnitureController furnitureController;
+
     @Mock
     private FurnitureDTO furnitureDTO;
+
     @Mock
     private OrderService orderService;
+
     @InjectMocks
     private OrderController orderController;
+
     @Mock
     private OrderRequestDTO orderRequestDTO;
+
     @Mock
     private BillResponseDTO billResponseDTO;
 
     @Test
     void testClientController_basicFlows() {
-        when(clientService.registerClient(clientDTO)).thenReturn(clientDTO);
-        ResponseEntity<ClientDTO> regResp = clientController.registerClient(clientDTO);
+
+        when(clientService.registerClient(anyInt(), any(ClientDTO.class))).thenReturn(clientDTO);
+        ResponseEntity<ClientDTO> regResp = clientController.registerClient(1, clientDTO);
         assertEquals(200, regResp.getStatusCodeValue());
         assertEquals(clientDTO, regResp.getBody());
+
+
         when(clientService.getAllClients()).thenReturn(Arrays.asList(clientDTO));
         ResponseEntity<List<ClientDTO>> allResp = clientController.getAllClients();
         assertEquals(200, allResp.getStatusCodeValue());
         assertEquals(1, allResp.getBody().size());
+
+
         when(clientService.getClientById(1)).thenReturn(clientDTO);
         ResponseEntity<ClientDTO> byIdResp = clientController.getClientById(1);
         assertEquals(200, byIdResp.getStatusCodeValue());
@@ -65,10 +81,12 @@ public class ControllerTest {
 
     @Test
     void testFurnitureController_basicFlows() {
+
         when(furnitureService.getFurnitureCatalog(null, null)).thenReturn(Arrays.asList(furnitureDTO));
         ResponseEntity<List<FurnitureDTO>> catalogResp = furnitureController.getFurnitureCatalog(null, null);
         assertEquals(200, catalogResp.getStatusCodeValue());
         assertEquals(1, catalogResp.getBody().size());
+
         when(furnitureService.addFurniture(furnitureDTO)).thenReturn(furnitureDTO);
         ResponseEntity<FurnitureDTO> addResp = furnitureController.addFurniture(furnitureDTO);
         assertEquals(200, addResp.getStatusCodeValue());
@@ -77,13 +95,51 @@ public class ControllerTest {
 
     @Test
     void testOrderController_basicFlows() {
+
         when(orderService.createOrder(orderRequestDTO)).thenReturn(billResponseDTO);
         ResponseEntity<BillResponseDTO> createResp = orderController.createOrder(orderRequestDTO);
         assertEquals(200, createResp.getStatusCodeValue());
         assertEquals(billResponseDTO, createResp.getBody());
+
+
         when(orderService.getOrder(1)).thenReturn(billResponseDTO);
         ResponseEntity<BillResponseDTO> getResp = orderController.getOrder(1);
         assertEquals(200, getResp.getStatusCodeValue());
         assertEquals(billResponseDTO, getResp.getBody());
+    }
+
+    @Test
+    void testClientController_errorCases() {
+
+        when(clientService.registerClient(anyInt(), any(ClientDTO.class))).thenThrow(new RuntimeException("Error"));
+        ResponseEntity<ClientDTO> errorResp = clientController.registerClient(1, clientDTO);
+        assertEquals(400, errorResp.getStatusCodeValue());
+
+        when(clientService.getClientById(999)).thenThrow(new RuntimeException("No encontrado"));
+        ResponseEntity<ClientDTO> notFoundResp = clientController.getClientById(999);
+        assertEquals(404, notFoundResp.getStatusCodeValue());
+    }
+
+    @Test
+    void testFurnitureController_errorCases() {
+
+        when(furnitureService.addFurniture(furnitureDTO)).thenThrow(new RuntimeException("Error"));
+        ResponseEntity<FurnitureDTO> errorResp = furnitureController.addFurniture(furnitureDTO);
+        assertEquals(400, errorResp.getStatusCodeValue());
+
+        when(furnitureService.getFurnitureCatalog(null, null)).thenThrow(new RuntimeException("Error"));
+        ResponseEntity<List<FurnitureDTO>> catalogErrorResp = furnitureController.getFurnitureCatalog(null, null);
+        assertEquals(500, catalogErrorResp.getStatusCodeValue());
+    }
+
+    @Test
+    void testOrderController_errorCases() {
+        when(orderService.createOrder(orderRequestDTO)).thenThrow(new RuntimeException("Error"));
+        ResponseEntity<BillResponseDTO> errorResp = orderController.createOrder(orderRequestDTO);
+        assertEquals(400, errorResp.getStatusCodeValue());
+
+        when(orderService.getOrder(999)).thenThrow(new RuntimeException("No encontrado"));
+        ResponseEntity<BillResponseDTO> notFoundResp = orderController.getOrder(999);
+        assertEquals(404, notFoundResp.getStatusCodeValue());
     }
 }

@@ -1,31 +1,38 @@
 package edu.dosw.dto;
 
 import edu.dosw.model.Style;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Schema(description = "DTO que representa un mueble")
 public class FurnitureDTO {
+
+    @Schema(description = "ID del mueble", example = "1")
     private int id;
+
+    @Schema(description = "Nombre del mueble", example = "Silla clásica", required = true)
     private String name;
-    private double priceUnit;
+
+    @Schema(description = "Precio unitario del mueble", example = "150.50")
+    private double price;
+
+    @Schema(description = "Estilo del mueble", example = "CLASSIC")
     private Style style;
 
-    public FurnitureDTO() {}
+    @Schema(description = "Descripción del mueble", example = "Silla de madera maciza")
+    private String description;
 
-    public FurnitureDTO(int id, String name, double priceUnit, Style style) {
+
+    public FurnitureDTO(int id, String name, double price, Style style) {
         this.id = id;
         this.name = name;
-        this.priceUnit = priceUnit;
+        this.price = price;
         this.style = style;
+        this.description = "";
     }
-
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public double getPriceUnit() { return priceUnit; }
-    public void setPriceUnit(double priceUnit) { this.priceUnit = priceUnit; }
-
-    public Style getStyle() { return style; }
-    public void setStyle(Style style) { this.style = style; }
 }
