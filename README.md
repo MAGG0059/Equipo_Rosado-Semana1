@@ -372,7 +372,11 @@ Cada historia está alineada con los objetivos del proyecto: mejorar la trazabil
 
 ![BacklogS2.png](image%2FBacklogS2.png)
 
+
+
 ---
+
+
 
 ## 4. Planeación del sprint
 
@@ -392,5 +396,44 @@ Cada historia está alineada con los objetivos del proyecto: mejorar la trazabil
 ### Estado Sprint
 
 ![img.png](image/sprintS2.png)
+
+
+## Evidencias de PRS
+![img.png](image/PR.png)
 ---
 
+## ACT sprint
+![img.png](image/APIJira.png)
+
+## Evidencias del Swagger
+
+# Post /ordenes
+![img.png](image/PostOrdenes.png)
+
+![img.png](image/PostOrdenesTest.png)
+
+# Get /ordenes/id
+![img.png](image/Get%20Ordenes.png)
+
+![img.png](image/Get%20OrdenesTest.png)
+
+# Get /Muebles
+![img.png](image/Get%20muebles.png)
+![img.png](image/Get%20mueblesTest.png)
+
+# Post /Muebles
+
+![img.png](image/Post%20Muebles.png)
+![img.png](image/Post%20MueblesTest.png)
+
+# Post /Clientes
+
+![img.png](image/Post%20Clientes.png)
+
+
+![img.png](image/Post%20ClientesTest.png)
+
+# Get /Clientes
+
+![img.png](image/Get%20Clientes.png)
+![img.png](image/Get%20ClientesTest.png)

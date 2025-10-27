@@ -29,4 +29,5 @@ public abstract class Furniture {
         return style;
     }
 
+    public int getId() {return id;}
 }
