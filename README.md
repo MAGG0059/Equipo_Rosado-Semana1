@@ -399,7 +399,7 @@ Cada historia está alineada con los objetivos del proyecto: mejorar la trazabil
 
 
 ## Evidencias de PRS
-
+![img.png](image/PR.png)
 ---
 
 ## ACT sprint
