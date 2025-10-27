@@ -152,6 +152,7 @@
                                 <exclude>**/configurators/**</exclude>
                                 <exclude>**/exception/**</exclude>
                                 <exclude>**/default/**</exclude>
+                                <exclude>**/repository/**</exclude>
                             </excludes>
                         </configuration>
                     </execution>

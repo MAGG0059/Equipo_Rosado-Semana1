@@ -12,10 +12,8 @@ public class DiscountDecoratorTest {
         Client client = new Client(1, "Bob", "Main Ave");
         Furniture chair = new Furniture(1, "Chair", 100.0, Style.MODERN) {};
         Furniture table = new Furniture(2, "Table", 200.0, Style.CLASSIC) {};
-
         BillComponent bill = new Bill(client, List.of(chair, table));
         BillComponent discountedBill = new DiscountDecorator(bill, 0.10);
-
         assertEquals(270.0, discountedBill.getTotal(), 0.001);
     }
 
