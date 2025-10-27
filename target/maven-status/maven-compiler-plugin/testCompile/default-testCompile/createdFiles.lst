@@ -3,6 +3,7 @@ edu\dosw\FurnitureTest.class
 edu\dosw\EnvioDecoratorTest$2.class
 edu\dosw\BillTest$8.class
 edu\dosw\IVADecoratorTest$2.class
+edu\dosw\ModelTest.class
 edu\dosw\DiscountDecoratorTest$2.class
 edu\dosw\DiscountDecoratorTest.class
 edu\dosw\BillTest$6.class
@@ -23,5 +24,7 @@ edu\dosw\ServiceTest.class
 edu\dosw\FurnitureTest$Chair.class
 src\test\java\edu\dosw\ControllerTest.class
 edu\dosw\DiscountDecoratorTest$1.class
+edu\dosw\ModelTest$TestFurniture.class
 edu\dosw\BillTest.class
 edu\dosw\BillTest$5.class
+edu\dosw\ModelTest$TestBillDecorator.class
